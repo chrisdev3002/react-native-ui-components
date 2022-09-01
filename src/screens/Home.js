@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Button, SafeAreaView, FlatList } from 'react-native'
+import { View, TouchableOpacity, SafeAreaView, FlatList, Text } from 'react-native'
 
 const DATA = [
   {
@@ -10,12 +10,18 @@ const DATA = [
     route: 'Carousel',
     title: 'Carousel',
   },
+  {
+    route: 'FadeInSlide',
+    title: 'Slide Anim',
+  },
 ];
 
 export const Home = (props) => {
-  const renderButton = ({ item }) => (
-    <View style={{margin: 10,  width: 150}}>
-      <Button title={item.title} onPress={() => props.navigation.navigate(item.route)} /> 
+  const RenderButton = ({ item }) => (
+    <View style={{margin: 10,  width: 150, padding: 20, borderRadius: 20, backgroundColor: 'lightsteelblue'}}>      
+      <TouchableOpacity onPress={() => props.navigation.navigate(item.route)}>
+        <Text style={{textAlign: 'center'}}>{item.title}</Text>  
+      </TouchableOpacity> 
     </View>
   );
 
@@ -24,7 +30,7 @@ export const Home = (props) => {
       <View style={{ marginTop: 20 }}>
         <FlatList 
           data={DATA}
-          renderItem={renderButton}
+          renderItem={RenderButton}
           keyExtractor={item => item.route}
         />
       </View>    
